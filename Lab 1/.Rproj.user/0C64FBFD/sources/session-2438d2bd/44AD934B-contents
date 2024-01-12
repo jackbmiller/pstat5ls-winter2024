@@ -1,0 +1,90 @@
+## CSV files: a common way to store data
+
+CSV stands for "comma separated values" and is a commonly used file type for storing data.
+
+Open the file "penguins.csv" from the files pane (lower right) to see what a .csv file looks like:
+
+\includegraphics[width=8cm]{assets/images/open_file.png}
+
+Each row of the file is an "observation" or "case", and consists of one or more variables whose *values* are *separated* by *commas* (hey, look at that). The first row contains the names of the variables contained in the file.
+
+## Palmer Penguins Data
+
+We're going to start by working with a data set with data on 333 penguins collected from 3 islands in the Palmer Archipelago in Antarctica. Data were collected and made available by [Dr. Kristen Gorman](https://www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php) and the [Palmer Station, Antarctica LTER](https://pal.lternet.edu/), a member of the [Long Term Ecological Research Network](https://lternet.edu/), and the data were prepared by [Dr. Allison Horst](https://github.com/allisonhorst/palmerpenguins).
+
+\includegraphics[width=6cm]{assets/images/lter_penguins.png}
+
+## Reading Data Into R
+
+We can **read** data into R using a function called `read.csv()`. The first argument to `read.csv()` is the name of a .csv file (here, `penguins.csv`), in quotes. We then store the results of `read.csv()` as an object called `penguins`.
+
+```{r readData}
+
+penguins <- read.csv("penguins.csv", stringsAsFactors = TRUE)
+
+```
+
+Run the `tryIt6` chunk in your notes to read in the penguins data file.
+
+## Peeking at the Data
+
+Let's see what's in the data. We can peek at the first few (6, specifically) rows of the data using the `head()` function:
+
+\tiny
+
+```{r headPenguins}
+
+head(penguins)
+
+```
+
+## Peeking at the Data
+
+We read that line of code as "*head* of *penguins*". Remember that `penguins` is what we named our data set. We can see that `penguins` contains a number of *variables*, like `species`, `island`, and more.
+
+Run the `tryIt7` chunk in your notes to peek at the first 6 rows of the penguins data file.
+
+## Data
+
+| Variable name    | Description                                                                                               |
+|:-----------------------------------|:-----------------------------------|
+| `species`        | Penguin species (Adélie, Chinstrap, and Gentoo)                                                           |
+| `island`         | Island in Palmer Archipelago, Antarctica, on which the penguin was observed (Biscoe, Dream, or Torgersen) |
+| `bill_length_mm` | A number denoting bill length (in millimeters)                                                            |
+| `bill_depth_mm`  | A number denoting bill depth (in millimeters)                                                             |
+
+## Data Continued
+
+| Variable name       | Description                                             |
+|:-------------------------------------|:--------------------------------|
+| `flipper_length_mm` | A whole number denoting flipper length (in millimeters) |
+| `body_mass_g`       | A whole number denoting penguin body mass (in grams)    |
+| `sex`               | Penguin sex (female, male)                              |
+| `year`              | Study year (2007, 2008, 2009)                           |
+
+## Another Way
+
+We can also peek at the data using a function called `str()` (pronounced "stir", short for "structure"):
+
+\tiny
+```{r strPenguins}
+
+str(penguins)
+
+```
+
+\normalsize
+Run the `tryIt8` chunk in your notes examine the structure of the penguins data file.
+
+# Code Cheat Sheet
+
+## `read.csv(file, stringsAsFactors = TRUE)`
+- `file` is the name of the file from which data are to be read
+- `stringsAsFactors` should generally be set to `TRUE` (all caps): this determines how text-like data in a CSV file is interpreted by R.
+
+## `head(x, n)`
+- `x` is a data.frame
+- `n` is the number of rows to print
+
+## `str(object)`
+- `object` is the R object about which you want to have some information (i.e., see the `str`ucture of).

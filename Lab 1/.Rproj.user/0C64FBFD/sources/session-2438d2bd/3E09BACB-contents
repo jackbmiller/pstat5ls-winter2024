@@ -1,0 +1,51 @@
+---
+title: "PSTAT 5LS Winter 2024" 
+author: "Your Name Here"
+date: "Week of January 15, 2024"
+output: pdf_document
+---
+
+# Lab Notes
+
+Use this place to take any notes during your lab section.
+
+- Type any notes here
+- Add new notes by using the dash `-` to create a list
+
+# Lab Code
+
+You can follow along with the TA's tutorial by running the chunks below. 
+
+```{r tryIt1, error = T}
+# Run this code chunk to print the phrase "Hello World!" to the screen
+print("Hello world!")
+```
+
+```{r tryIt2, error = T}
+# Run this code chunk to compute what 5 times 7 is
+5 * 7
+```
+
+```{r tryIt3, error = T}
+# Run this code chunk to compute what 36 divided by 6 is, and assign it to x
+x <- 36 / 6
+```
+
+```{r tryIt4, error = T}
+# Run this code chunk to see the value of x that R has stored
+x
+```
+
+```{r tryIt5, error = T}
+# Run this code chunk to see what happens if you use X (capitalized) instead
+X
+```
+
+# Code Cheat Sheet
+
+## `<-`
+- Assigns a value to a name
+- `name <- value`
+
+
+
