@@ -1,0 +1,125 @@
+---
+title: "PSTAT 5LS Lab 2 SOLUTIONS"
+author: "DO NOT DISTRIBUTE FOR ANY REASON"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+The data set `tuition_sample.csv` contains information about yearly cost of attendance, yearly cost of room and board, and yearly total cost of attendance (tuition + room and board) for 300 sampled public and private colleges and universities around the United States. 
+
+In this lab, you will produce numerical and graphical displays to help you answer questions about the differences in tuition between private and public colleges.
+
+**Collaborators:** If applicable, replace this text with the names of anyone you collaborated with on this project.
+
+# Lab Assignment
+
+## Question 0
+
+In the chunk below, import ("read in") the data in `tuition_sample.csv` and call it `tuition`. Don't forget the `stringsAsFactors` argument. Hint: We read in the penguins data in the lab tutorial.
+
+```{r question0, error = T}
+# Use this code chunk to write the code necessary to answer the question. Do not start your code on this line, and do not start your code with # (this is a comment, R will ignore it).
+tuition <- read.csv("tuition_sample.csv", stringsAsFactors = TRUE)
+```
+
+## Question 1
+
+a.  Create a histogram of in-state tuition for the colleges in the sample. Be sure to add a title and labels for the axes. Also provide the arguments `main`, `xlab`, and `ylab` for a plot title, x-axis label, and y-axis label.
+b.  Create a histogram of out-of-state tuition for the colleges in the sample. Be sure to add a title and labels for the axes. Also provide the arguments `main`, `xlab`, and `ylab` for a plot title, x-axis label, and y-axis label.
+
+```{r question1, error = T}
+# Use this code chunk to write the code necessary to answer the question. Do not start your code on this line, and do not start your code with # (this is a comment, R will ignore it).
+hist(tuition$in_state_tuition, 
+     main = "Histogram of In-state Tuitions", 
+     xlab = "In-state Tuition ($)", 
+     ylab = "Number of Colleges")
+
+hist(tuition$out_of_state_tuition, 
+     main = "Histogram of Out-of-state Tuitions", 
+     xlab = "Out-of-state Tuition ($)", 
+     ylab = "Number of Colleges")
+
+```
+
+## Question 2
+
+a.  Find and report the appropriate measure of center for in-state tuition from this data set.
+b.  Find and report the appropriate measure of center for out-of-state tuition from this data set.
+c.  Are these values parameters or statistics?
+
+Use the code chunk below to run the code you need. Then answer the questions after the code chunk.
+
+```{r question2, error = T}
+# Use this code chunk to write the code necessary to answer the question. Do not start your code on this line, and do not start your code with # (this is a comment, R will ignore it).
+
+#students can use summary() or median()
+summary(tuition$in_state_tuition)
+summary(tuition$out_of_state_tuition)
+
+#OR
+
+median(tuition$in_state_tuition)
+median(tuition$out_of_state_tuition)
+
+```
+
+a.  The appropriate measure of center for the cost of in-state tuition is the median. The median for in-state tuition is \$16,515.
+
+b.  The appropriate measure of center for the cost of out-of-state tuition is the median. The median for out-of-state tuition is \$23,338.
+
+c.  The values in parts (a) and (b) are both statistics because they are calculated using data from the sample.
+
+## Question 3
+
+Make a side-by-side boxplot of the quantitative variable in-state tuition by the categorical variable institution type.
+
+```{r question3, error = T}
+# Use this code chunk to write the code necessary to answer the question. Do not start your code on this line, and do not start your code with # (this is a comment, R will ignore it).
+
+boxplot(tuition$in_state_tuition ~ tuition$type,
+        main = "Boxplots of Yearly In-State Tuition by Institution Type",
+        xlab = "Institution Type",
+        ylab = "Tuition ($)",
+        col = c("#003660", "#FEBC11"))
+
+```
+
+## Question 4
+
+Make a side-by-side boxplot of the quantitative variable out-of-state tuition by the categorical variable institution type.
+
+```{r question4, error = T}
+# Use this code chunk to write the code necessary to answer the question. Do not start your code on this line, and do not start your code with # (this is a comment, R will ignore it).
+
+boxplot(tuition$out_of_state_tuition ~ tuition$type,
+        main = "Boxplots of Yearly Out-of-State Tuition by Institution Type",
+        xlab = "Institution Type",
+        ylab = "Tuition ($)",
+        col = c("#003660", "#FEBC11"))
+
+```
+
+## Question 5
+
+Run the following code chunk so that you can see the summary statistics for in-state and out-of-state tuitions by type of institution.
+
+```{r}
+#TAs, I put # signs at the beginning of lines 115 and 117 below so that the students will not get an error when they try to knit their documents earlier in the lab report. #Be sure to have the students remove the # signs at the beginning of each line so they can see the results.
+#Remove the # at the beginning of each of the code lines so that this function runs on the data
+
+tapply(tuition$in_state_tuition, tuition$type, summary)
+
+tapply(tuition$out_of_state_tuition, tuition$type, summary)
+
+```
+
+Does it appear that institution type (private, public) has an effect on in-state tuitions? On out-of-state tuitions? Be sure to address aspects of what you see in the side-by-side boxplots from Questions 3 and 4 and to the output from the code chunk above to support your answers.
+
+# Answer
+Yes, it does appear that the institution type has an effect on both in-state and out-of-state tuitions. For in-state tuition, private universities tend to be more expensive overall, with the median cost approximately \$20,000-\$25,000 more for private than  public schools. For out-of-state tuition, private universities still tend to be more expensive overall, with the median cost approximately \$10,000-\$15,000 more for private schools than for public schools.
+

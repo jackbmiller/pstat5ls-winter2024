@@ -1,0 +1,152 @@
+---
+title: "PSTAT 5LS Winter 2024"
+author: "Your Name Here"
+date: "Week of January 22, 2024"
+output: pdf_document 
+---
+
+# Lab Notes
+
+Use this place to take any notes during your lab section.
+
+- Type any notes here
+- Add new notes by using the dash `-` to create a list
+
+# Lab Code
+
+You can follow along with the TA's tutorial by running the chunks below. 
+
+```{r loadPenguins, error = T}
+# Run this code chunk to load the penguins data set into the environment
+penguins <- read.csv("penguins.csv", stringsAsFactors = TRUE)
+```
+
+```{r tryIt1, error = T}
+# Run this code chunk to peek at the penguins data set
+head(penguins)
+```
+
+```{r tryIt2, error = T}
+# Run this code chunk to examine the structure of the penguins data set
+str(penguins)
+```
+
+```{r tryIt3, error = T}
+# Run this code chunk to make a table of the species variable in the penguins data
+table(penguins$species)
+```
+
+```{r tryIt4, error = T}
+# Run this code chunk to make a two-way frequency table of the variables species and island in the penguins data
+table(penguins$species, penguins$island)
+```
+
+```{r tryIt5, error = T}
+# Run this code chunk to make a bar chart of the species variable in the penguins data
+barplot(table(penguins$species),
+     xlab = "Species",
+     ylab = "Frequency",
+     main = "Bar Chart of Number of Penguins of Each Species 
+            Observed",
+     col = c("darkorange1", "mediumorchid2", "darkcyan"))
+```
+
+```{r tryIt6, error = T}
+# Run this code chunk to get help with the barplot function
+?barplot
+```
+
+```{r tryIt7, error = T}
+# Run this code chunk to view the summary of the flipper_length_mm variable in the penguins data
+summary(penguins$flipper_length_mm)
+```
+
+```{r tryIt8, error = T}
+# Run this code chunk to view the summary and the standard deviation of the flipper_length_mm variable in the penguins data
+summary(penguins$flipper_length_mm)
+sd(penguins$flipper_length_mm)
+```
+
+```{r tryIt9, error = T}
+# Run this code chunk to get all of the specific number summary values
+min(penguins$flipper_length_mm)
+mean(penguins$flipper_length_mm)
+median(penguins$flipper_length_mm)
+max(penguins$flipper_length_mm)
+sd(penguins$flipper_length_mm)
+IQR(penguins$flipper_length_mm)
+# Note that IQR is in all capital letters. Anything else (e.g., `iqr(penguins$flipper_length_mm)`) would give you an error
+```
+
+```{r tryIt10, error = T}
+# Run this code chunk to make a histogram of the variable flipper_length_mm in the penguins data. When you make your own histograms, be sure to add the `main` and `xlab` labels for better readability 
+hist(penguins$flipper_length_mm,
+     main = "Histogram of Penguin Flipper Length",
+     xlab = "Flipper Length (mm)",
+     col = "lightblue")
+```
+
+```{r tryIt11, error = T}
+# Run this code chunk to make a boxplot of the variable flipper_length_mm in the penguins data. Don't forget a title using `main` and a y-axis label using `ylab`.
+boxplot(penguins$flipper_length_mm,
+        main = "Boxplot of Penguin Flipper Length",
+        ylab = "Flipper Length (mm)",
+        col = "lightblue")
+```
+
+```{r tryIt12, error = T}
+# Run this code chunk to make a side-by-side boxplot of penguins body mass by the categorical variable `species`
+boxplot(penguins$body_mass_g ~ penguins$species,
+        main = "Boxplots of Penguin Body Mass by Species",
+        ylab = "Body mass (g)",
+        xlab = "Species",
+        col = c("darkorange1", "mediumorchid2", "darkcyan"))
+```
+
+```{r tryIt13, error = T}
+# Run this code chunk to make a side-by-side boxplot of penguins flipper length by the categorical variable `island`
+boxplot(penguins$flipper_length_mm ~ penguins$island,
+        main = "Boxplots of Penguin Flipper Length by Island",
+        ylab = "Flipper Length (mm)",
+        xlab = "Island",
+        col = c("slateblue2", "dodgerblue2", "mediumaquamarine"))
+```
+
+# Code Cheat Sheet
+
+## `$`
+- tells R that we are looking for a variable in a particular data frame
+- `data_set_name$data_set_variable`
+
+## `table(data_set_name$data_set_variable)`
+- creates a table of the frequencies of one categorical variable
+
+## `table(data_set_name$data_set_variable, data_set_name$data_set_variable)`
+- creates a two way table of the frequencies of two categorical variables
+
+## `barplot(table(data_set_name$data_set_variable))`
+- creates a barplot of a categorical variable
+
+## `summary(data_set_name$data_set_variable)`
+- creates the five number summary of a numeric variable
+
+## `hist(data_set_name$data_set_variable)`
+- creates a histogram of a numeric variable
+
+## `boxplot(data_set_name$data_set_variable)`
+- creates a boxplot of a numeric variable
+
+## `boxplot(data_set_name$numeric_variable ~ data_set_name$categorical_variable)`
+- creates side-by-side boxplots of a numeric variable grouped by a categorical variable
+
+## Important plotting arguments
+
+### `main = "Title of Your Graph in Double Quotes"`
+- graph title that must be inside a set of double quotes
+
+### `xlab = "x-axis Label of Your Graph in Double Quotes"`
+- the x- (horizontal) axis label that must be inside a set of double quotes
+
+### `ylab = "y-axis Label of Your Graph in Double Quotes"`
+- the y- (vertical) axis label that must be inside a set of double quotes
+
