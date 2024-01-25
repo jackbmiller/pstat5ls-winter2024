@@ -1,0 +1,109 @@
+---
+title: "PSTAT 5LS Lab 3 Report" 
+author: "YOUR NAME GOES HERE - KEEP THE QUOTES"
+date: "TODAY'S DATE GOES HERE - KEEP THE QUOTES"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(stats250sbi)
+```
+
+# Introduction
+
+People providing an organ for donation sometimes seek the help of a special medical consultant. These consultants assist the patient in all aspects of the surgery, with the goal of reducing the possibility of complications during the medical procedure and recovery. Patients might choose a consultant based in part on the historical complication rate of the consultant’s clients.
+
+The average complication rate for liver donor surgery in the United States is known to be 10%. One consultant tried to attract patients by claiming her rate is even lower. She reported that out of 62 liver donor surgeries that she has facilitated, only 3 of her clients had complications.
+
+# Background
+
+## Population of Interest
+
+The population of interest is liver transplant patients (with this consultant group).
+
+## Study Design
+
+This data was from an observational study. There is no mention of an experimental design, such as a control and treatment group.
+
+## Research Question
+
+Does your analysis suggest that this consultant has a lower liver transplant complication rate than the 10% national average? We will answer this at the end of this lab report.
+
+# Hypotheses and Simulation Set Up
+
+Please fill in your answer where it says **"Write your answer here"**. Be sure you define any symbols that you use.
+
+$H_0$: *Write your answer here*
+
+$H_A$: *Write your answer here*
+
+*define your symbol here*
+
+
+|                   | **Assuming the chance model...** |
+|-------------------|----------------------------------|
+|          One draw | *Write your answer here* | 
+|   Blue poker chip | *Write your answer here* | 
+| Yellow poker chip | *Write your answer here* | 
+|    Chance of blue | *Write your answer here* | 
+|    One repetition | *Write your answer here* | 
+
+## Calculate the Sample Proportion
+```{r phat, error = T}
+# Use this code chunk to calculate the sample proportion. Do not start your code on this line, and do not start your code with # (this is a comment, R will ignore it).
+
+```
+
+# Running the Simulation
+
+## Set the Seed
+Run the `setSeed` code chunk. No output will occur, but it will set the seed.
+
+```{r setSeed, error = T}
+set.seed(15)
+```
+
+## Generating the Simulations
+
+```{r simulate, error = T}
+# Use this code chunk to write the code necessary to run 500 repetitions of the simulation. Call this simulation `sim2`. Do not start your code on this line, and do not start your code with # (this is a comment, R will ignore it).
+
+
+
+
+```
+
+
+## Make a Histogram
+
+```{r histogram, error = T}
+# Use this code chunk to write the code necessary to create a histogram of the simulated results with a vertical line at the observed sample proportion, phat. Do not start your code on this line, and do not start your code with # (this is a comment, R will ignore it).
+
+
+
+
+
+```
+
+## Calculate the p-value
+
+```{r pvalue, error = T}
+# Use this code chunk to calculate the p-value. Do not start your code on this line, and do not start your code with # (this is a comment, R will ignore it).
+
+
+
+```
+
+
+What does this tell us about our sample proportion?
+
+Is it *rare* or *not all that rare*? Do we *reject* or *fail to reject* the null hypothesis at the 0.05 significance level?
+*write your answer here*
+
+# Conclusion
+
+What do the results tell us about our research question? Our research question was "Does your analysis suggest that this consultant has a lower liver transplant complication rate than the 10% national average?" 
+
+*Replace this text with the answer to the research question. Be sure to include all relevant context and to use support from your analysis.*
+
