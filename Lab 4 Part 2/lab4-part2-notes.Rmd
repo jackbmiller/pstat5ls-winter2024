@@ -1,0 +1,151 @@
+---
+title: "PSTAT 5LS Lab 4 Part 2 Notes"
+author: "Your Name Here"
+date: "Week of February 12"
+output: pdf_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(stats250sbi)
+```
+
+# Lab Notes
+
+Use this place to take any notes during your lab section.
+
+- Type any notes here
+- Add new notes by using the dash `-` to create a list
+
+# Lab Code
+
+Use the chunks below to try out any code that you'd like. 
+
+```{r setSeed, error = T}
+# Run this code chunk to set the seed
+set.seed(734)
+```
+
+```{r sim1, error = T}
+# Run this code chunk to run the simulation for the pets hypothesis test 
+sim1 <- simulate_chance_model(chanceSuccess = 0.67, 
+                              numDraws = 480, 
+                              numRepetitions = 500)
+```
+
+```{r histSimulate, error = T}
+# Run this code chunk to create the histogram of sim1, including the two red vertical lines
+hist(sim1, 
+     main = "Histogram of 500 Simulation Results",
+     xlab = "Simulated proportion of U.S households with at least one pet")
+abline(v = 0.7, col = "red")
+abline(v = 0.64, col = "red")
+```
+
+```{r pvalue_sim, error = T}
+# Run this code chunk to find the two-sided p-value of the simulation
+sum(sim1 >= 0.70 | sim1 <= 0.64) / 500
+```
+
+```{r normalDistCode, error = T}
+# Run this code chunk to visualize the p-value using the N(0, 1) distribution
+plot_norm(mean = 0.67, 
+          sd = 0.021, 
+          shadeValues = c(0.64, 0.7), 
+          direction = "beyond", 
+          col.shade = "darkgreen")
+```
+
+```{r computeSE, error = T}
+# Run this code chunk to compute the standard error for the normal distribution
+p_0 <- 0.67
+n <- 480
+SE <- sqrt(p_0*(1 - p_0)/n)
+SE 
+```
+
+```{r prop_test_pet, error = T}
+# Run this code chunk to use prop_test() to find the p-value based on the normal theory
+prop_test(x = 336, 
+          n = 480, 
+          p = 0.67, 
+          alternative = "two.sided")
+```
+
+```{r pvalue}
+# Run this code chunk to use calculate the p-value using the normal theory
+2 * pnorm(q = 0.7, 
+      mean = 0.67, 
+      sd = 0.021, 
+      lower.tail = FALSE)
+```
+
+Each of the three previous approaches to finding the p-value will produce a slightly different result. **No need to worry about how close the values should be, or which value is "best".**
+
+```{r prop_test_pet2, echo = FALSE}
+# Run this code and examine the 95% confidence interval 
+prop_test(x = 336, 
+          n = 480, 
+          p = 0.67, 
+          alternative = "two.sided")
+```
+
+```{r prop_test_pet3, echo = FALSE}
+# Run this code to get a 98% confidence interval 
+prop_test(x = 336, 
+          n = 480, 
+          p = 0.67, 
+          alternative = "two.sided", 
+          conf.level = 0.98)
+```
+
+# Code Cheat Sheet
+
+## `set.seed(seed)`
+Sets the "seed" of R's random number generator. After setting the seed, the sequence of random numbers R will produce is entirely determined/predictable. This is useful for ensuring you get the same results whenever you knit your code.
+
+- `seed` is an integer. The seed you want to set.
+
+## `simulate_chance_model(chanceSuccess, numDraws, numRepetitions)`
+
+- `chanceSuccess`: a number between 0 and 1 represending the probability of observing a "success"
+- `numDraws`: the number of times to draw a poker chip from the bag needed to coplete one repetition of the simulation
+- `numRepetitions`: the number of times to repeat the simulation process
+
+## `abline(linear_model_name)`
+
+- Will plot the line found in `linear_model_name`
+- Use `v = value` to print a vertical line
+
+## `plot_norm()` 
+
+- `mean`: the mean of the normal distribution you'd like to draw ($\mu$)
+- `sd`: the standard deviation or standard error of the normal distribution you'd like to draw ($\sigma$ or $\sqrt{\frac{p_0(1-p_0)}{n}}$, respectively)
+- `shadeValues` (optional): either a number or a vector of two numbers (using `c()`) that are the boundaries of the region you'd like to shade.
+- `direction`: where to shade (`"less"`, `"greater"`, `"between"`, or `"beyond"`)
+- `col.shade`: the color to use when shading
+- any other graphical parameters you want to use to control the appearance of the plot (like `main`, etc.)
+
+## `prop_test(x, n, p, alternative)`
+
+- `x`: the number of successes observed in the study
+- `n`: the sample size of the study
+- `p`: the value of the null hypothesis
+- `alternative`: the direction of the alternative hypothesis; choices are `"two.sided"` (default), `"greater"`, or `"less"`
+
+## `pnorm(q, mean, sd, lower.tail = TRUE)`
+
+- `q`: the x-axis value you want to find an area related to
+- `mean`: the mean of the normal distribution, defaults to 0
+- `sd`: the standard deviation of the normal distribution, defaults to 1
+- `lower.tail` determines whether `pnorm()` finds the area to the left or right of `q`. If `lower.tail` is set to \textcolor{blue}{`TRUE`} (the default), it shades to the \textcolor{blue}{LEFT} If `lower.tail` is set to \textcolor{red}{`FALSE`}, it shades to the \textcolor{red}{RIGHT}.
+
+## Important plotting arguments
+
+### `main = "Title of Your Graph in Double Quotes"`
+- graph title that must be inside a set of double quotes
+
+### `xlab = "x-axis Label of Your Graph in Double Quotes"`
+- the x- (horizontal) axis label that must be inside a set of double quotes
+
+### `ylab = "y-axis Label of Your Graph in Double Quotes"`
+- the y- (vertical) axis label that must be inside a set of double quotes

@@ -1,0 +1,60 @@
+---
+title: "PSTAT 5LS Lab 4 Solution"
+author: "DO NOT DISTRIBUTE FOR ANY REASON"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(stats250sbi)
+```
+
+# Introduction
+
+Higher Ed Dive reported that 43% of students applying for college included their SAT and/or ACT score in the 2022-2023 application year.  
+
+In a survey of high school students in a large metropolitan area, 74 out of 200 students surveyed reported including their SAT and/or ACT score in the 2022-2023 application year. **Is there evidence to suggest that the proportion of high school students in this large metropolitan area who included their SAT and/or ACT score in their college application is different from the national rate of 43%?** 
+
+## Hypotheses
+Write the null and alternative hypotheses below.
+Please fill in your answer where it says **"Write your answer here"**.
+
+$H_0$: $p = 0.43$
+
+$H_A$: $p \neq 0.43$
+
+where $p$ represents the proportion of high school students in this large metropolitan area who included their SAT and/or ACT score in their college application.
+
+## Calculations
+Assume the conditions for inference are satisfied. Use `prop_test()` to find the test statistic and p-value.
+
+```{r codeBlock1, error = T}
+# Use this code chunk to run the hypothesis test. 
+prop_test(x = 74, n = 200, p = 0.43, alternative = "two.sided")
+
+```
+
+Please fill in your answer where it says **"Write your answer here"**.
+
+The test statistic is **-1.7139**.
+The p-value is **0.0865**.
+
+## Decision and Conclusion
+Please fill in your answer where it says **"Write your answer here"**.
+
+Do you reject or fail to reject the null hypothesis at the 10% significance level? Why?
+**Since the p-value = 0.0865 is less than $\alpha$ = 0.10, we reject the null hypothesis**
+
+Does your analysis suggest that the proportion of high school students in this large metropolitan area who included their SAT and/or ACT score in their college application is different from the national rate of 43%? 
+**Yes**
+
+## Confidence Interval
+Calculate a 90% confidence interval for the proportion of high school students in this large metropolitan area who included their SAT and/or ACT score in their college application. 
+
+```{r codeBlock2, error = T}
+# Use this code chunk to calculate the 90% confidence interval. 
+prop_test(x = 74, n = 200, p = 0.43, alternative = "two.sided", conf.level = 0.90)
+
+```
+
+We estimate with 90% confidence that the proportion of high school students in this large metropolitan area who included their SAT and/or ACT score in their college application is between **0.314 and 0.426**.
