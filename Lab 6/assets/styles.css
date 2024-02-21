@@ -1,0 +1,35 @@
+.answer {
+  font-size: 12pt;
+  padding: .25em 1em;
+  margin-top: 2em;
+  border: 1pt solid #cccccc;
+  border-radius: 7px;
+}
+
+.question {
+  font-size: 13pt;
+  background: #f2f2f2;
+  padding: .25em 1em;
+  box-shadow: 5px 5px #e5e5e5;
+  margin-bottom: 1.5em;
+  margin-top: 1.5em;
+  border-radius: 7px;
+}
+
+.scoring {
+  font-size: 14pt;
+  background: #ffefbc;
+  padding: .25em 1em;
+  margin-top: 2em;
+  box-shadow: 5px 5px #e5e5e5;
+  border-radius: 10px;
+}
+
+.grade-comments {
+  font-size: 14pt;
+  background: #e1e9ee;
+  padding: .25em 1em;
+  margin-top: 2em;
+  box-shadow: 5px 5px #e5e5e5;
+  border-radius: 10px;
+}

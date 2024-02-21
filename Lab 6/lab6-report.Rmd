@@ -1,0 +1,94 @@
+---
+title: "PSTAT 5LS Lab 6 Report"
+author: "YOUR NAME GOES HERE - KEEP THE QUOTES"
+date: "TODAY'S DATE GOES HERE - KEEP THE QUOTES"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(stats250sbi)
+```
+
+# Introduction
+
+The U.S. Department of Transportation's (DOT) Bureau of Transportation Statistics tracks the on-time performance of domestic flights operated by large air carriers. Summary information on the number of on-time, delayed, canceled, and diverted flights is published in DOT's monthly Air Travel Consumer Report and in this dataset of 2015 flight delays and cancellations. We will be working with a cleaned up version of [this data set published by Kaggle](https://www.kaggle.com/usdot/flight-delays?select=flights.csv). 
+
+`delayed_flights.csv` reflects a random sample of only flights leaving from Detroit Metro Airport (DTW) from two airlines: American Airlines (`AA`) and Delta Airlines (`DL`). The airline info can be found in the `AIRLINE` variable. Then, the variable `AIRLINE_DELAY` was cleaned to reflect only actual delay times in minutes (i.e. non-zero, non-negative values for the variable).
+
+## Research Question
+Is there evidence to support that there is a difference in the average delay time in minutes (`AIRLINE_DELAY`) for American Airlines flights and Delta Airlines flights (`AIRLINE`) leaving Detroit Metro Airport? Your Lab 7 Report will answer this question.
+
+The parameter of interest is $\mu_1 - \mu_2$ which represents the difference in the average flight delay time for American Airlines and the average flight delay for Delta Airlines, for flights that departed from Detroit Metro Airport.
+
+## Question 1:
+What hypotheses do you need to test to determine if there is a difference in the average delay time in minutes (`AIRLINE_DELAY`) for American Airlines flights and Delta Airlines flights (`AIRLINE`) leaving Detroit Metro Airport?
+
+$H_0$: *write your null hypothesis here in symbols (no need to define the symbols again)*
+
+$H_A$: *write your alternative hypothesis here in symbols (no need to define the symbols again)*
+
+## Question 2:
+We need to check the conditions for inference before proceeding. 
+
+For one of the conditions, you need to examine the data. First, you need to read in the data. 
+
+```{r chunk1, error = T}
+# Run this code chunk to read in the data
+delays <- read.csv("delayed_flights.csv", stringsAsFactors = TRUE)
+```
+
+Then create histograms for the two samples:
+
+```{r chunk2, error = T}
+# Run this code chunk to create a histogram for the flight delays for American Airlines
+hist(delays$AIRLINE_DELAY[delays$AIRLINE == "AA"],
+     main = "Histogram of American Airlines Delays",
+     xlab = "Flight Delay in Minutes")
+```
+
+```{r chunk3, error = T}
+# Run this code chunk to create a histogram for the flight delays for Delta Airlines
+hist(delays$AIRLINE_DELAY[delays$AIRLINE == "DL"],
+     main = "Histogram of Delta Airlines Delays",
+     xlab = "Flight Delay in Minutes")
+```
+
+Check the conditions below:
+
+**Replace this text with your check of the conditions**
+
+## Question 3:
+Conduct the test of the hypotheses you stated above.
+
+```{r chunk4, error = T}
+# Run this chunk to get the hypothesis test 
+t.test(AIRLINE_DELAY ~ AIRLINE, data = delays, mu = 0, alternative = "REPLACE THIS TEXT TO MATCH YOUR ALTERNATIVE HYPOTHESIS--be sure to keep the quotation marks")
+```
+
+a. The value of the test statistic is **replace this text with the value of the test statistic**, and the *p*-value is **replace this text with the p-value**.
+
+b. Do you reject or fail to reject the null hypothesis at the 0.10 significance level? Why?
+
+**replace this text with your answer to part b**
+
+c. Write a conclusion in context.
+
+**replace this text with your answer to part c**
+
+d. Would your decision to reject or fail to reject the null hypothesis be the same at the 0.05 significance level? Why or why not?
+
+**replace this text with your answer to part d**
+
+## Question 4:
+Use R to calculate a 90% confidence interval for the difference in the average delay time in minutes (`AIRLINE_DELAY`) for American Airlines flights and Delta Airlines flights (`AIRLINE`) leaving Detroit Metro Airport.
+
+```{r chunk5, error = T}
+t.test(AIRLINE_DELAY ~ AIRLINE, data = delays, conf.level = 0.9)
+```
+
+Based on this 90% confidence interval, which airline would you recommend to your roommate, American Airlines, Delta Airlines, or no preference? Explain why. Be sure to include numerical evidence.
+
+**replace this text with your answer to Question 4**
+
+
