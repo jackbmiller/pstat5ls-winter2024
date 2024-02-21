@@ -1,0 +1,69 @@
+---
+title: "PSTAT 5LS Lab 5 Solution"
+author: "DO NOT DISTRIBUTE FOR ANY REASON"
+output: pdf_document
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(stats250sbi)
+```
+
+# Introduction
+
+The standard healthy human body-temperature of 98.6 degrees Fahrenheit was made famous by German physician Carl Reinhold August Wunderlich, who published the figure in a book in 1868. Modern studies, however, have called that number into question, suggesting that it’s too high. A recent study, for example, found the average temperature of 25,000 British patients to be 97.9 F. ^[https://med.stanford.edu/news/all-news/2020/01/human-body-temperature-has-decreased-in-united-states.html]
+
+Is this still the case? A medical research team at Stanford led by Julie Parsonnet, MD, recently compiled a dataset of body temperature measurements from adult patients who visited Stanford Health Care between 2007 and 2017 to examine this question. In this lab, we'll be looking at a randomly selected subset of 1,000 of those measurements.^[Protsiv, Myroslava, et al. “Decreasing Human Body Temperature in the United States since the Industrial Revolution.” ELife, edited by Mark Jit et al., vol. 9, Jan. 2020, p. e49555. eLife, doi:10.7554/eLife.49555.] It was determined that these Stanford patients are a good representation of adults across the entire US.
+
+```{r loadTemps, error = T}
+# Run this code chunk to load the body temperature data set 
+body_temp <- read.csv("body_temp.csv", stringsAsFactors = TRUE)
+```
+
+## Question 1 - Check the Conditions
+We know that the body temperature measurements will be independent from one patient to the next because this is a random sample of patients. Now we need to check the **normality** condition.
+
+```{r histTemps}
+# Run this code chunk to produce a histogram of the body temperature data
+hist(body_temp$temp, 
+     main = "Histogram of Sampled Body Temperatures",
+     xlab = "Temperature in Degrees Fahrenheit")
+```
+
+Check the **normality** condition for the body temperatures.
+
+*The histogram of body temperatures is unimodal and fairly symmetric. There is one high outlier, but it won't have much impact because it is only 1 of 1000 total measurements. With a sample size of 1000, we can definitely relax the normality condition.*
+
+## Question 2
+Estimate the mean human body temperature for all adults in the United States by creating a 98% confidence interval. 
+
+```{r temp_CI, error = T}
+# Use this code chunk to write the code necessary to create the 98% confidence interval. 
+t.test(body_temp$temp, 
+       conf.level = 0.98)
+```
+
+The 98% confidence interval is **97.921** degrees Fahrenheit to **98.020** degrees Fahrenheit.
+
+## Question 3
+Interpret the confidence interval in context.
+
+*We estimate with 98% confidence that the mean body temperature of healthy humans is between 97.921 and 98.020 degrees Fahrenheit.*
+
+## Question 4
+Does it appear that the mean body temperature of healthy humans is still 98.6 degrees Fahrenheit or does it seem like the mean body temperature of healthy humans has decreased from that number? Briefly (in 1-2 sentences) explain your reasoning. Use your confidence interval (i.e., do not run a hypothesis test).
+
+*Since all of the values in the confidence interval are less than 98.6, it appears that the mean body temperature of healthy humans has* **decreased** *from that number.*
+
+## Question 5
+Refer to the research article at https://med.stanford.edu/news/all-news/2020/01/human-body-temperature-has-decreased-in-united-states.html. What are some of the reasons listed by the researchers as to why the mean body temperature of healthy humans has decreased?
+
+*Students can list any of the following:*
+
+- changes in our our environment
+- reduction in metabolic rate (amount of energy being used)
+- population-wide decline in inflammation
+- improvements in public health (e.g., advances in medical treatments, better hygiene, greater availability of food, improved standards of living)
+- more constant ambient temperature from heating and cooling allows for a decrease in metabolic rate and thus a decrease in temperature
+

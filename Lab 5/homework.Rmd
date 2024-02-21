@@ -1,0 +1,45 @@
+---
+title: "Your Title Here"
+author: "Your Name Here"
+date: "Today's Date Here"
+output: pdf_document
+---
+
+# Notes
+
+Use this place to write down any notes.
+
+- Type any notes here
+- Add new notes by using the dash `-` to create a list
+
+# Code
+
+Use the chunks below to try out any code that you'd like. Be sure you run the setup chunk first, before you try any code.
+
+```{r setup, error = T}
+library(stats250sbi)
+```
+
+```{r codeChunk1, error = T}
+
+```
+
+```{r codeChunk2, error = T}
+
+```
+
+```{r codeChunk3, error = T}
+
+```
+
+```{r codeChunk4, error = T}
+
+```
+
+```{r codeChunk5, error = T}
+
+```
+
+```{r codeChunk6, error = T}
+
+```

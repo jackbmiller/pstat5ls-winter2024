@@ -1,0 +1,117 @@
+---
+title: "PSTAT 5LS Lab 5"
+author: "Your Name Here"
+date: "Week of February 19, 2024"
+output: pdf_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(stats250sbi)
+```
+
+# Lab Notes
+
+Use this place to take any notes during your lab section.
+
+- Type any notes here
+- Add new notes by using the dash `-` to create a list
+
+# Lab Code
+
+Use the chunks below to try out any code that you'd like. We have loaded the `penguins` data set for you in the first chunk, so you can try things out with this data.
+
+```{r loadPenguins, error = T}
+penguins <- read.csv("penguins.csv", stringsAsFactors = TRUE)
+```
+
+```{r tryIt1, error = T}
+# Run this code chunk to create a histogram of the sampled penguin flipper lengths. 
+hist(penguins$flipper_length_mm,
+     main = "Histogram of Flipper Length",
+     xlab = "Flipper length (mm)",
+     col = "#09847A")
+```
+
+```{r tryIt2, error = T}
+# Run this code chunk to find the 90% confidence interval for the mean flipper length of all penguins in Palmer Archipelago
+# Note that you don't need to use the `alternative` argument to find a confidence interval. If you would like to include 
+t.test(penguins$flipper_length_mm, 
+       conf.level = 0.9)
+```
+
+```{r tryIt2b, error = T}
+# Note that you didn't need to use the `alternative` argument to find a confidence interval. If you would like to include that argument, be sure to use "two.sided" 
+# Run this code chunk to get the confidence interval again with the `alternative` argument added in
+t.test(penguins$flipper_length_mm, 
+       alternative = "two.sided",
+       conf.level = 0.9)
+```
+
+```{r tryIt3, error = T}
+# Run this code chunk to run the hypothesis test for whether the mean flipper length of all penguins is greater than 199 mm
+t.test(penguins$flipper_length_mm, 
+       mu = 199, 
+       alternative = "greater")
+```
+
+# Code Cheat Sheet
+
+## `pt(q, df, lower.tail = TRUE)`
+
+- `q` is the x-axis value you want to find an area related to
+- `df` is the degrees of freedom of the $t$ distribution
+- `lower.tail` determines whether `pt()` finds the area to the left or right of `q`. If `lower.tail = TRUE` (the default), it shades to the left. If `lower.tail = FALSE`, it shades to the right.
+  
+## `qt(q, df, lower.tail = TRUE)`
+
+- `p` is the probability or area under the curve you want to find an x-axis value for
+- `df` is the degrees of freedom of the $t$ distribution
+- `lower.tail` determines whether `pt()` finds the area to the left or right of `q`. If `lower.tail = TRUE` (the default), it shades to the left. If `lower.tail = FALSE`, it shades to the right.
+  
+## `plot_t()`
+
+- `df` refers to the degrees of freedom of the distribution to plot. You must provide this value.
+- `shadeValues` is a vector of up to 2 numbers that define the region you want to shade
+- `direction` can be one of `less`, `greater`, `beyond`, or `between`, and controls the direction of shading between `shadeValues`. Must be `less` or `greater` if `shadeValues` has only one element; `beyond` or `between` if two
+- `col.shade` controls the color of the shaded region, defaults to `"cornflowerblue"`
+- `...` lets you specify other graphical parameters to control the appearance of the normal curve (e.g., `lwd`, `lty`, `col`, etc.)
+
+## `t.test(x, alternative, mu, conf.level)`
+- `x` is a vector of data values
+- `alternative` specifies the direction of the alternative hypothesis; must be one of "two.sided", "less", or "greater"
+- `mu` indicates the true value of the mean (under the null hypothesis); defaults to 0
+- `conf.level` is the confidence level to be used in constructing a confidence interval; must be between 0 and 1, defaults to 0.95
+
+## Important plotting arguments
+
+### `main = "Title of Your Graph in Double Quotes"`
+
+- graph title that must be inside a set of double quotes
+
+### `xlab = "x-axis Label of Your Graph in Double Quotes"`
+
+- the x- (horizontal) axis label that must be inside a set of double quotes
+
+### `ylab = "y-axis Label of Your Graph in Double Quotes"`
+
+- the y- (vertical) axis label that must be inside a set of double quotes
+
+# Reminder about Submission to Gradescope
+
+At the top of the document, make sure you've changed the `author` field to your name (in quotes!) and the `date` field to today's date. 
+
+When you've finished the lab, click the **Knit** button one last time.<br />
+
+![Click the "Knit" button at the top of the editor pane"](assets/images/knit-button.png)
+
+Give yourself a high five - you just wrote code! 
+
+### Submission instructions
+<!-- This is a comment and will not show up in your document. Note that the
+numbering here is all 1's. This will automatically be converted to 1, 2, etc.
+when you knit the document; writing all 1's makes it so you don't have to
+constantly update the numbering when you move things around in editing! -->
+
+1. In the Files pane, check the box next to your `lab1report.pdf`: </br>
+  
+  ![Check the box next to your `lab1-report.pdf`](assets/images/pdf_checkbox.png)
